@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "onlinestore-9896a": {
+      "hosting": {
+        "OnlineStore": [
+          "onlinestore-9896a"
+        ]
+      }
+    }
+  }
+}
