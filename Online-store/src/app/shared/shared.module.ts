@@ -1,3 +1,4 @@
+import { FirebaseModule } from './firebase/firebase.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
@@ -12,7 +13,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     CommonModule,
     MaterialModule,
     RouterModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FirebaseModule
   ]
 })
 export class SharedModule { }

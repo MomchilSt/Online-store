@@ -24,6 +24,10 @@
   padding-right: 7px;
 }
 
+.profileLogo {
+  padding-right: 10px;
+}
+
 .mat-toolbar a {
   display: inline-block;
   margin: 0 10px;

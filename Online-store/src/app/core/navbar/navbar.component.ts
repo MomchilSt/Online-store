@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/service/auth.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -17,9 +18,24 @@ export class NavbarComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(
+    private breakpointObserver: BreakpointObserver,
+    private authService: AuthService) {}
 
   toggleSidenav() {
     this.sidenavToggle.emit();
   }
+
+  get isAuth() {
+    return this.authService.isLoggedIn;
+  }
+
+  get currentUser() {
+    return this.authService.userData;
+  }
+
+  signOut() {
+    this.authService.signOut();
+  }
+
 }

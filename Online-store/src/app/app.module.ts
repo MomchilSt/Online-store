@@ -1,3 +1,9 @@
+import { ProductModule } from './product/product.module';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AuthRoutingModule } from './auth/auth-routing.module';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
 import { FirebaseModule } from './shared/firebase/firebase.module';
 import { CoreModule } from './core/core.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -7,6 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { CreateComponent } from './product/create/create.component';
+import { ProductRoutingModule } from './product/product-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,11 +24,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserAnimationsModule,
+    AuthRoutingModule,
     AppRoutingModule,
-    BrowserModule,
     FirebaseModule,
+    BrowserModule,
     CoreModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SharedModule,
+    AuthModule,
+    ProductModule,
+    ProductRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

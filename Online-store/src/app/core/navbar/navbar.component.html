@@ -6,9 +6,9 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Home</a>
-      <a mat-list-item href="#">Login</a>
-      <a mat-list-item href="#">Register</a>
+      <a *ngIf="!isAuth" mat-list-item href="#">Home</a>
+      <a *ngIf="!isAuth" mat-list-item href="#" routerLink="/auth/login">Login</a>
+      <a *ngIf="!isAuth" mat-list-item href="#" routerLink="/auth/register">Register</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -23,10 +23,15 @@
       </button>
       <mat-icon class="logo">local_grocery_store</mat-icon>
       <span>OnlineStore</span>
-      <a class="link" href="#">Home</a>
+      <a *ngIf="!isAuth" class="link" href="#">Home</a>
+      <a *ngIf="isAuth" class="link" routerLink="/all-products">Procuts</a>
       <span class="spacer"></span>
-      <a class="link" href="#">Login</a>
-      <a class="link" href="#">Register</a>
+      <a *ngIf="isAuth" class="link" routerLink="/create">Create product</a>
+      <a *ngIf="isAuth" class="link" routerLink="">My Profile</a>
+      <a *ngIf="isAuth" class="link" routerLink="" (click)="signOut()">Logout</a>
+
+      <a *ngIf="!isAuth" class="link" routerLink="/auth/login">Login</a>
+      <a *ngIf="!isAuth" class="link" routerLink="/auth/register">Register</a>
     </mat-toolbar>
     <ng-content></ng-content>
   </mat-sidenav-content>
