@@ -1,0 +1,78 @@
+<div class="home" fxLayoutAlign="center">
+  <div
+    fxLayout="column"
+    fxLayoutGap="20px"
+    fxLayoutAlign="center"
+    fxFlex="35"
+  >
+    <h2 fxLayoutAlign="center">Login In !</h2>
+    <form
+      #loginForm="ngForm"
+      (ngSubmit)="login(loginForm.value)"
+      fxLayout="column"
+    >
+      <mat-form-field>
+        <input class="inputField"
+          #emailInput="ngModel"
+          matInput
+          ngModel
+          id="email"
+          type="email"
+          name="email"
+          required
+          email
+          placeholder="Email address"
+        />
+
+        <mat-error *ngIf="emailInput.hasError('required')"
+          >Email is required.</mat-error
+        >
+        <mat-error *ngIf="emailInput.hasError('email')"
+        >Enter valid email.</mat-error
+      >
+      </mat-form-field>
+      <mat-form-field>
+        <input
+          #passwordInput="ngModel"
+          matInput
+          ngModel
+          id="password"
+          type="password"
+          name="password"
+          required
+          minlength="6"
+          placeholder="Password"
+        />
+        <mat-error *ngIf="passwordInput.hasError('required')"
+          >Password is required.</mat-error
+        >
+        <mat-error *ngIf="passwordInput.hasError('minlength')"
+          >Password must be at least 6 symbols.</mat-error
+        >
+      </mat-form-field>
+      <button
+        class="btn-sign-in"
+        mat-raised-button
+        color="primary"
+        [disabled]="loginForm.invalid"
+      >
+        Log In
+      </button>
+    </form>
+
+    <mat-divider></mat-divider>
+
+    <div fxFlex fxLayoutAlign="center">
+      <button mat-raised-button color="primary" (click)="signInGoogle()">
+        Sign in with Google
+      </button>
+    </div>
+
+    <div fxFlex fxLayoutAlign="center">
+      <span
+        >Don't have an account?
+        <a class="redirect" routerLink="/auth/register">Sign Up</a></span
+      >
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.card {
+    max-width: 250px;
+    margin: 3% 0;
+    border-radius: 0.5em;
+    box-shadow: 0 0 1em gray;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px 16px;
+  }
+  
+  .side-space {
+      padding-left: 92px;
+  }

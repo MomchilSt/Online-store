@@ -1,0 +1,25 @@
+.card {
+  max-width: 250px;
+  margin: 3% 0;
+  border-radius: 0.5em;
+  box-shadow: 0 0 1em gray;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 25px 16px;
+}
+
+.side-space {
+    padding-left: 70px;
+}
+
+.head {
+  padding-top: 30px;
+}
+
+.card:hover {
+  box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8);
+}
+
+.likes {
+  padding-right: 21px;
+}

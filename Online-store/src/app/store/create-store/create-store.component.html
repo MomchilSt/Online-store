@@ -1,0 +1,71 @@
+<div
+class="create-store"
+fxFlex
+fxLayoutAlign="center"
+>
+<form
+#createFormInput="ngForm"
+(ngSubmit)="
+createStore(createFormInput.value)"
+fxLayout="column"
+fxFlex="80"
+fxLayoutGap="45px"
+>
+<h1 fxLayoutAlign="center">Create store</h1>
+
+    <mat-form-field>
+      <input
+        matInput
+        ngModel
+        id="name"
+        type="name"
+        name="name"
+        required
+        placeholder="Store name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+      #priceInput="ngModel"
+      matInput
+      ngModel
+        id="address"
+        type="text"
+        name="address"
+        required
+        placeholder="Store address"
+      />
+
+      <mat-error *ngIf="priceInput.hasError('required')"
+      >Address is required.</mat-error
+    >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      #imageInput="ngModel"
+      matInput
+      ngModel
+        id="imageUrl"
+        type="text"
+        name="imageUrl"
+        required
+        placeholder="Store image"
+      />
+
+      <mat-error *ngIf="imageInput.hasError('required')"
+      >Image is required.</mat-error
+    >
+    </mat-form-field>
+
+
+    <button
+      class="btn-submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="createFormInput.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

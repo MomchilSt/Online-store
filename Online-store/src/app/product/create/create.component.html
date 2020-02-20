@@ -1,0 +1,107 @@
+<div
+class="create-product"
+fxFlex
+fxLayoutAlign="center"
+>
+<form
+#createFormInput="ngForm"
+(ngSubmit)="
+createProduct(createFormInput.value)"
+fxLayout="column"
+fxFlex="80"
+fxLayoutGap="25px"
+>
+<h1 fxLayoutAlign="center">Create prodcut</h1>
+
+    <mat-form-field>
+      <input
+        matInput
+        ngModel
+        id="name"
+        type="name"
+        name="name"
+        required
+        placeholder="Product name"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <textarea
+        class="textarea"
+        #textareaInput="ngModel"
+        matInput
+        ngModel
+        required
+        minlength="10"
+        maxlength="350"
+        name="description"
+        id="description"
+        rows="5"
+        placeholder="Product description"
+      ></textarea>
+      <div class="hint" fxLayoutAlign="end">
+        <mat-hint>{{ textareaInput?.value?.length }} / 350</mat-hint>
+      </div>
+      <mat-error *ngIf="textareaInput.hasError('required')"
+        >Please write a description.</mat-error
+      >
+      <mat-error *ngIf="textareaInput.hasError('minlength')"
+        >Description must be at least 10 symbols long.</mat-error
+      >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      #priceInput="ngModel"
+      matInput
+      ngModel
+        id="price"
+        type="number"
+        name="price"
+        required
+        placeholder="Product price"
+      />
+
+      <mat-error *ngIf="priceInput.hasError('required')"
+      >Price is required.</mat-error
+    >
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+      #imageInput="ngModel"
+      matInput
+      ngModel
+        id="imageUrl"
+        type="text"
+        name="imageUrl"
+        required
+        placeholder="Product image"
+      />
+
+      <mat-error *ngIf="imageInput.hasError('required')"
+      >Price is required.</mat-error
+    >
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Select store</mat-label>
+      <mat-select #storeInput="ngModel" name="store" ngModel required>
+        <mat-option *ngFor="let store of stores" [value]="store.name">
+          {{ store.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="storeInput.hasError('required')"
+        >Choosing store is required.</mat-error
+      >
+    </mat-form-field>
+
+    <button
+      class="btn-submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="createFormInput.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

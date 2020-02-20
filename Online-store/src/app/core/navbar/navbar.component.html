@@ -6,9 +6,15 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a *ngIf="!isAuth" mat-list-item href="#">Home</a>
-      <a *ngIf="!isAuth" mat-list-item href="#" routerLink="/auth/login">Login</a>
-      <a *ngIf="!isAuth" mat-list-item href="#" routerLink="/auth/register">Register</a>
+      <a *ngIf="!isAuth" mat-list-item href="#" class="link" href="#">Home</a>
+      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/all-stores">Stores</a>
+      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/all-products">Procuts</a>
+      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/create">Create product</a>
+      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/create-store">Create store</a>
+      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/profile">My Profile</a>
+      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="" (click)="signOut()">Logout</a>
+      <a *ngIf="!isAuth" mat-list-item href="#" class="link" routerLink="/auth/login">Login</a>
+      <a *ngIf="!isAuth" mat-list-item href="#" class="link" routerLink="/auth/register">Register</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,12 +30,13 @@
       <mat-icon class="logo">local_grocery_store</mat-icon>
       <span>OnlineStore</span>
       <a *ngIf="!isAuth" class="link" href="#">Home</a>
+      <a *ngIf="isAuth" class="link" routerLink="/all-stores">Stores</a>
       <a *ngIf="isAuth" class="link" routerLink="/all-products">Procuts</a>
       <span class="spacer"></span>
       <a *ngIf="isAuth" class="link" routerLink="/create">Create product</a>
-      <a *ngIf="isAuth" class="link" routerLink="">My Profile</a>
+      <a *ngIf="isAuth" class="link" routerLink="/create-store">Create store</a>
+      <a *ngIf="isAuth" class="link" routerLink="/profile">My Profile</a>
       <a *ngIf="isAuth" class="link" routerLink="" (click)="signOut()">Logout</a>
-
       <a *ngIf="!isAuth" class="link" routerLink="/auth/login">Login</a>
       <a *ngIf="!isAuth" class="link" routerLink="/auth/register">Register</a>
     </mat-toolbar>
