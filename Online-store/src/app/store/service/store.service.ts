@@ -42,9 +42,12 @@ export class StoreService {
       }))));
   }
 
-  get getAllPost() {
+  update(id: string, prop: string, value: string) {
     return this.afDb
-      .collection<IStore>('stores')
-      .valueChanges();
+      .collection<IStore>('posts', ref => {
+        return ref.where('id', '==', id);
+      })
+      .doc(id)
+      .update({ [prop]: +value + 1 });
   }
 }
