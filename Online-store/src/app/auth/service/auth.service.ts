@@ -1,4 +1,5 @@
-import { auth } from 'firebase/app';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { auth, User } from 'firebase/app';
 import { Injectable } from '@angular/core';
 import { IUser } from '../../shared/interfaces/user';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -18,7 +19,7 @@ export class AuthService {
   constructor(
     public afDb: AngularFirestore,
     private afAuth: AngularFireAuth,
-    //private db: AngularFireDatabase,
+    private db: AngularFireDatabase,
     private router: Router,
     private snackbar: MatSnackBar
   ) {
@@ -116,20 +117,27 @@ export class AuthService {
 
 
    setUserData(afUserInfo, name?: string, imageUrl?: string) {
-     const userData: IUser = {
-       id: afUserInfo.user.uid,
-       email: afUserInfo.user.email,
-       name: name || afUserInfo.user.displayName,
-       imageUrl: imageUrl || afUserInfo.user.imageUrl
-     };
+    this.db.object('/users/' + afUserInfo.user.uid).update({
+      id: afUserInfo.user.uid,
+      email: afUserInfo.user.email,
+      name: name || afUserInfo.displayName,
+      imageUrl: imageUrl || 'https://www.jetphotos.com/assets/img/user.png'
+    });
 
-     if (!userData.imageUrl) {
-       userData.imageUrl = 'https://www.jetphotos.com/assets/img/user.png';
-       }
+    //  const userData: IUser = {
+    //    id: afUserInfo.user.uid,
+    //    email: afUserInfo.user.email,
+    //    name: name || afUserInfo.user.displayName,
+    //    imageUrl: imageUrl || afUserInfo.user.imageUrl
+    //  };
 
-     return this.afDb.doc(`users/${afUserInfo.user.uid}`).set(userData, {
-       merge: true
-     });
+    //  if (!userData.imageUrl) {
+    //    userData.imageUrl = 'https://www.jetphotos.com/assets/img/user.png';
+    //    }
+
+    //  return this.afDb.doc(`users/${afUserInfo.user.uid}`).set(userData, {
+    //    merge: true
+    //  });
    }
 
   signOut() {

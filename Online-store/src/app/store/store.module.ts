@@ -8,12 +8,11 @@ import { MaterialModule } from '../shared/material/material.module';
 import { RouterModule } from '@angular/router';
 import { StoreRoutingModule } from './store-routing.module';
 import { AllStoresComponent } from './all-stores/all-stores.component';
-import { StoreComponent } from './store/store.component';
 
 
 
 @NgModule({
-  declarations: [CreateStoreComponent, AllStoresComponent, StoreComponent],
+  declarations: [CreateStoreComponent, AllStoresComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

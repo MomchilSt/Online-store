@@ -21,48 +21,24 @@ export class UserService {
     private afs: AngularFireStorage
   ) { }
 
-  // getUserByUid(uid: string) {
-  //   return this.db.object('/users/' + uid)
-  //     .snapshotChanges()
-  //     .pipe(map((user) => {
-  //       return user.payload.val() as any;
-  //     }));
-  // }
+  getUserByUid(uid: string) {
+    return this.db.object('/users/' + uid)
+      .snapshotChanges()
+      .pipe(map((user) => {
+        return user.payload.val() as any;
+      }));
+  }
 
-  // getCurrentUser() {
-  //   return this.afAuth.authState.pipe(switchMap((user) => {
-  //     if (user) {
-  //       return this.getUserByUid(user.uid);
-  //     } else {
-  //       return new Observable();
-  //     }
-  //   }), map((user) => {
-  //     return user;
-  //   }));
-  // }
-
-  getUser(id) {
-    return this.afDb
-      .collection<IUser>('users', ref => ref.where('id', '==', id))
-      .valueChanges()
-      .pipe(
-        mergeMap((userList: IUser[]) => userList),
-        mergeMap((user: IUser) => {
-          return this.afDb
-            .collection<IProduct>('products', ref =>
-              ref.where('createdById', '==', user.id)
-            )
-            .valueChanges()
-            .pipe(
-              map((products: IProduct[]) => {
-                return {
-                  ...user,
-                  products
-                };
-              })
-            );
-        })
-      );
+  getCurrentUser() {
+    return this.afAuth.authState.pipe(switchMap((user) => {
+      if (user) {
+        return this.getUserByUid(user.uid);
+      } else {
+        return new Observable();
+      }
+    }), map((user) => {
+      return user;
+    }));
   }
 }
 

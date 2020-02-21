@@ -8,10 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ProductRoutingModule } from './product-routing.module';
 import { AllProductsComponent } from './all-products/all-products.component';
+import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
-  declarations: [ CreateComponent, AllProductsComponent],
+  declarations: [ CreateComponent, AllProductsComponent, DetailsComponent],
   imports: [
     FlexLayoutModule,
     CommonModule,

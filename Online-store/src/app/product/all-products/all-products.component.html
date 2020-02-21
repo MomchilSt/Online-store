@@ -1,265 +1,33 @@
 <div class="side-space">
 
 <div class="cards-holder"  fxLayout="row wrap" fxLayoutGap="15px" fxLayoutAlign="flex-start">
+  <ng-container *ngFor="let product of (products | async)">
     <mat-card class="card">
-        <div class="head" fxLayoutAlign="center">
-          <mat-card-header>
-            <mat-card-title>asddas</mat-card-title>
-          </mat-card-header>
-        </div>
-      
-        <img mat-card-image src="https://www.punchtechnology.co.uk/wp-content/uploads/2018/02/Contour-Helios-built-PC-front-angle-600x600.jpg" alt="Photo of a Shiba Inu" />
-        <mat-card-content>
-          <p fxLayoutAlign="center">
-            Price
-            asddasdasda
-            asddsa
-          </p>
-        </mat-card-content>
-        <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
-  <!-- *ngIf="isAuthor && isDetailPage"
-            (click)="deletePost()" -->
-            <button mat-button>
-              $ 150
-            </button>
-        
-            <!-- *ngIf="!isDetailPage" (click)="getDetails(post.id)" -->
-            <button  mat-button>
-              <mat-icon>favorite</mat-icon>
-            </button>
-            <button mat-button color="primary">details</button>
-      
+      <div class="head" fxLayoutAlign="center">
+        <mat-card-header>
+          <mat-card-title>{{product.name}}</mat-card-title>
+        </mat-card-header>
+      </div>
     
-        
-        </mat-card-actions>
-        <span #likes fxLayoutAlign="center" class="likes">
-          33
+      <img mat-card-image src="{{product.imageUrl}}" alt="Photo of a Shiba Inu" />
+      <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
+        <button mat-button >
+          <span #favourited class="favourited">
+          {{product.favourited}}
        </span>
-      </mat-card>
+      </button>
+          <button  mat-button (click)="favourite(product)">
+            <mat-icon>favorite</mat-icon>
+          </button>
+          <button mat-button color="primary" (click)="details(product.key)">details</button>
+      </mat-card-actions>
+      
+     <span fxLayoutAlign="center" class="price">
+      <b>$ {{product.price}}</b>
+     </span>
+    </mat-card>
 
-      <div class="line"><mat-divider></mat-divider></div>
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-
-      <mat-card class="card" fx >
-        <div fxLayoutAlign="center">
-          <mat-card-header>
-            <mat-card-title>asddas</mat-card-title>
-          </mat-card-header>
-        </div>
-      
-        <img mat-card-image src="https://www.punchtechnology.co.uk/wp-content/uploads/2018/02/Contour-Helios-built-PC-front-angle-600x600.jpg" alt="Photo of a Shiba Inu" />
-        <mat-card-content>
-          <p fxLayoutAlign="center">
-            Price
-            asddasdasda
-            asddsa
-          </p>
-        </mat-card-content>
-        <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
-          <div class="like-dislike-btn">
-            <!-- (click)="likePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_up_alt</mat-icon>
-            </button>
-            <span #likes class="likes">
-               post.likes
-            </span>
-      
-            <!-- (click)="dislikePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_down_alt</mat-icon>
-            </button>
-            <span #dislikes class="dislikes">
-              post.dislikes
-            </span>
-          </div>
-      
-    
-          <!-- *ngIf="isAuthor && isDetailPage"
-            (click)="deletePost()" -->
-          <button mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-      
-          <!-- *ngIf="!isDetailPage" (click)="getDetails(post.id)" -->
-          <button  mat-button>
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-      <div class="line"><mat-divider></mat-divider></div>
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-
-      <mat-card class="card" fx >
-        <div fxLayoutAlign="center">
-          <mat-card-header>
-            <mat-card-title>asddas</mat-card-title>
-          </mat-card-header>
-        </div>
-      
-        <img mat-card-image src="https://www.punchtechnology.co.uk/wp-content/uploads/2018/02/Contour-Helios-built-PC-front-angle-600x600.jpg" alt="Photo of a Shiba Inu" />
-        <mat-card-content>
-          <p fxLayoutAlign="center">
-            Price
-            asddasdasda
-            asddsa
-          </p>
-        </mat-card-content>
-        <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
-          <div class="like-dislike-btn">
-            <!-- (click)="likePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_up_alt</mat-icon>
-            </button>
-            <span #likes class="likes">
-               post.likes
-            </span>
-      
-            <!-- (click)="dislikePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_down_alt</mat-icon>
-            </button>
-            <span #dislikes class="dislikes">
-              post.dislikes
-            </span>
-          </div>
-      
-    
-          <!-- *ngIf="isAuthor && isDetailPage"
-            (click)="deletePost()" -->
-          <button mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-      
-          <!-- *ngIf="!isDetailPage" (click)="getDetails(post.id)" -->
-          <button  mat-button>
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-      <div class="line"><mat-divider></mat-divider></div>
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-
-      <mat-card class="card" fx >
-        <div fxLayoutAlign="center">
-          <mat-card-header>
-            <mat-card-title>asddas</mat-card-title>
-          </mat-card-header>
-        </div>
-      
-        <img mat-card-image src="https://www.punchtechnology.co.uk/wp-content/uploads/2018/02/Contour-Helios-built-PC-front-angle-600x600.jpg" alt="Photo of a Shiba Inu" />
-        <mat-card-content>
-          <p fxLayoutAlign="center">
-            Price
-            asddasdasda
-            asddsa
-          </p>
-        </mat-card-content>
-        <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
-          <div class="like-dislike-btn">
-            <!-- (click)="likePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_up_alt</mat-icon>
-            </button>
-            <span #likes class="likes">
-               post.likes
-            </span>
-      
-            <!-- (click)="dislikePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_down_alt</mat-icon>
-            </button>
-            <span #dislikes class="dislikes">
-              post.dislikes
-            </span>
-          </div>
-      
-    
-          <!-- *ngIf="isAuthor && isDetailPage"
-            (click)="deletePost()" -->
-          <button mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-      
-          <!-- *ngIf="!isDetailPage" (click)="getDetails(post.id)" -->
-          <button  mat-button>
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-      <div class="line"><mat-divider></mat-divider></div>
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-
-      <mat-card class="card" fx >
-        <div fxLayoutAlign="center">
-          <mat-card-header>
-            <mat-card-title>asddas</mat-card-title>
-          </mat-card-header>
-        </div>
-      
-        <img mat-card-image src="https://www.punchtechnology.co.uk/wp-content/uploads/2018/02/Contour-Helios-built-PC-front-angle-600x600.jpg" alt="Photo of a Shiba Inu" />
-        <mat-card-content>
-          <p fxLayoutAlign="center">
-            Price
-            asddasdasda
-            asddsa
-          </p>
-        </mat-card-content>
-        <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
-          <div class="like-dislike-btn">
-            <!-- (click)="likePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_up_alt</mat-icon>
-            </button>
-            <span #likes class="likes">
-               post.likes
-            </span>
-      
-            <!-- (click)="dislikePost(post.id)" -->
-            <button  mat-button>
-              <mat-icon>thumb_down_alt</mat-icon>
-            </button>
-            <span #dislikes class="dislikes">
-              post.dislikes
-            </span>
-          </div>
-      
-    
-          <!-- *ngIf="isAuthor && isDetailPage"
-            (click)="deletePost()" -->
-          <button mat-button>
-            <mat-icon>delete</mat-icon>
-          </button>
-      
-          <!-- *ngIf="!isDetailPage" (click)="getDetails(post.id)" -->
-          <button  mat-button>
-            <mat-icon>more_horiz</mat-icon>
-          </button>
-        </mat-card-actions>
-      </mat-card>
-      
-      <div class="line"><mat-divider></mat-divider></div>
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-      <!-- <> -->
-
+    <div class="line"><mat-divider></mat-divider></div>
+  </ng-container>      
 </div>
 </div>

@@ -86,7 +86,7 @@ fxLayoutGap="25px"
     <mat-form-field>
       <mat-label>Select store</mat-label>
       <mat-select #storeInput="ngModel" name="store" ngModel required>
-        <mat-option *ngFor="let store of stores" [value]="store.name">
+        <mat-option *ngFor="let store of (stores | async)" [value]="store.name">
           {{ store.name }}
         </mat-option>
       </mat-select>

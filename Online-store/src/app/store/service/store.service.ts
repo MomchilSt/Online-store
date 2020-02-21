@@ -20,9 +20,7 @@ export class StoreService {
     private snackBar: MatSnackBar) { }
   create(value) {
     const { name, address, imageUrl } = value;
-    const id = this.db.createPushId();
-    this.db.list('/store').push({
-       id,
+    this.db.list('/stores').push({
        name,
        address,
        imageUrl,
@@ -34,7 +32,7 @@ export class StoreService {
   }
 
   getAll(): Observable<IStore[]> {
-    return this.db.list<IStore>('products')
+    return this.db.list<IStore>('stores')
       .snapshotChanges()
       .pipe(
         map((data) => data.map(x => ({
@@ -43,11 +41,7 @@ export class StoreService {
   }
 
   update(id: string, prop: string, value: string) {
-    return this.afDb
-      .collection<IStore>('posts', ref => {
-        return ref.where('id', '==', id);
-      })
-      .doc(id)
+    return this.db.object('/stores/' + id)
       .update({ [prop]: +value + 1 });
   }
 }
