@@ -44,4 +44,28 @@ export class ProductService {
     return this.db.object('/products/' + id)
       .update({ [prop]: +value + 1 });
   }
+
+  getById(id: string): Observable<IProduct> {
+    return this.db.object<IProduct>('/products/' + id)
+      .snapshotChanges()
+      .pipe(map((c) => {
+        const value: any = c.payload.val();
+        const product: IProduct = {
+          id: c.key,
+          name: value.name,
+          description: value.description,
+          price: value.price,
+          favourited: value.favourited,
+          imageUrl: value.imageUrl,
+          store: value.store,
+          createdById: value.createdById
+
+        };
+        return product;
+      }));
+  }
+
+  delete(id) {
+    this.db.object('/products/' + id).remove();
+  }
 }

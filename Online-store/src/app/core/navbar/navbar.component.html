@@ -8,7 +8,7 @@
     <mat-nav-list>
       <a *ngIf="!isAuth" mat-list-item href="#" class="link" href="#">Home</a>
       <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/all-stores">Stores</a>
-      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/all-products">Procuts</a>
+      <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/all-products">Products</a>
       <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/create">Create product</a>
       <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="/create-store">Create store</a>
       <a *ngIf="isAuth" mat-list-item href="#" class="link" routerLink="user/profile">My Profile</a>
@@ -31,7 +31,7 @@
       <span>OnlineStore</span>
       <a *ngIf="!isAuth" class="link" href="#">Home</a>
       <a *ngIf="isAuth" class="link" routerLink="/all-stores">Stores</a>
-      <a *ngIf="isAuth" class="link" routerLink="/all-products">Procuts</a>
+      <a *ngIf="isAuth" class="link" routerLink="/all-products">Products</a>
       <span class="spacer"></span>
       <a *ngIf="isAuth" class="link" routerLink="/create">Create product</a>
       <a *ngIf="isAuth" class="link" routerLink="/create-store">Create store</a>

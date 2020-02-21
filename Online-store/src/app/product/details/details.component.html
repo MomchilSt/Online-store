@@ -1,0 +1,34 @@
+<div *ngIf="product | async as product" >
+  <div fxLayout="row wrap" fxLayoutGap="20px" class="line"><mat-divider></mat-divider></div>
+<div class="holder" 
+  fxLayout="row wrap" 
+  fxLayoutAlign="center"
+  fxFlex="35">
+  <mat-card  class="card">
+  <mat-card-header class="name"
+   fxLayoutAlign="center">
+   <span ><b>{{product.name}}</b></span>
+  </mat-card-header>
+  <img class="pic" mat-card-image src="{{product.imageUrl}}">
+</mat-card>
+</div>
+
+<mat-card class="holder"
+fxLayout="column"
+fxLayoutAlign="center"
+fxLayoutGap="30px"
+fxFlex="40"
+class="card">
+  <mat-card-header
+   fxLayoutAlign="center">
+   <mat-card-title>Description:</mat-card-title>
+    <mat-card-title>{{product.description}}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content fxLayoutAlign="center" fxLayout="column" >
+    <div fxLayoutAlign="center" ><b>Located at {{product.store}} store.</b></div>
+    <div fxLayoutAlign="center" ><b>Favourited: {{product.favourited}} times!</b></div>
+  </mat-card-content>
+  <mat-card-title fxLayoutAlign="center">Price: $ {{product.price}}</mat-card-title>
+  <button mat-button color="warn" (click)="deleteProduct(product)">Delete</button>
+</mat-card>
+</div>

@@ -4,7 +4,7 @@ export interface IProduct {
     description: string;
     price: number;
     favourited: number;
-    imgName?: string;
+    imageUrl?: string;
     store?: string;
-    createdByEmail?: string;
+    createdById?: string;
 }
