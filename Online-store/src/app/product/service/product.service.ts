@@ -10,7 +10,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ProductService {
-
+    // tslint:disable-next-line: variable-name
+    private _isAuthor = false;
   constructor(
     private db: AngularFireDatabase,
     private router: Router,
@@ -26,9 +27,13 @@ export class ProductService {
        imageUrl,
        store,
        favourited: 0,
-       createdById: localStorage.getItem('userId')
+       createdById: localStorage.getItem('email')
      })
      .then(() => this.snackBar.open('Product created', 'yeet!', { duration: 3000} ));
+  }
+
+  getAuthorEmail() {
+    return localStorage.getItem('email');
   }
 
   getAll(): Observable<IProduct[]> {

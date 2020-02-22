@@ -40,6 +40,16 @@ export class UserService {
       return user;
     }));
   }
+
+  updateBoughtProducts(id: string, price: number, name: string) {
+    const utc = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    return this.db.object('/users/' + id)
+      .update({ productsBought: ['Name: ' + name + ' ' + 'cost: $' + price + ' bought on ' + utc ]});
+  }
+  update(id: string, prop: string, value: string) {
+    return this.db.object('/products/' + id)
+      .update({ [prop]: +value + 1 });
+  }
 }
 
 

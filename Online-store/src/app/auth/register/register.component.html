@@ -13,7 +13,10 @@ fxLayoutAlign="center">
         (ngSubmit)="signUp(registerForm.value)"
         fxLayout="column"
       >
-        <div class="input-field-container" fxLayout fxLayoutAlign="space-around">
+        <div class="input-field-container"
+         fxLayout
+         fxLayoutAlign="space-around"
+         fxLayoutGap="20px">
           <div class="left" fxLayout="column">
             <mat-form-field>
               <input
@@ -91,7 +94,9 @@ fxLayoutAlign="center">
               >
             </div>
           </div>
-          <div class="right" fxLayout="column">
+          <div class="right"
+           fxLayout="column"
+           fxLayoutGap="20px">
             <mat-form-field>
               <input
                 #fullNameInput="ngModel"

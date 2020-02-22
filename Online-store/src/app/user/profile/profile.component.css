@@ -29,3 +29,7 @@
   width: 100%;
   box-sizing: border-box;
 }
+
+.boughtItems {
+  padding-top: 20px;
+}

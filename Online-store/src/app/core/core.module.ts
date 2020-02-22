@@ -8,10 +8,12 @@ import { MaterialModule } from '../shared/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HomeComponent } from './home/home.component';
 import { FooterComponent } from './footer/footer.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, NavbarComponent, HomeComponent, FooterComponent],
+  declarations: [NavbarComponent, NavbarComponent,
+     HomeComponent, FooterComponent, NotFoundComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -22,7 +24,9 @@ import { FooterComponent } from './footer/footer.component';
   ],
   exports: [
     NavbarComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent,
+    NotFoundComponent
   ]
 })
 export class CoreModule { }

@@ -29,6 +29,7 @@ class="card">
     <div fxLayoutAlign="center" ><b>Favourited: {{product.favourited}} times!</b></div>
   </mat-card-content>
   <mat-card-title fxLayoutAlign="center">Price: $ {{product.price}}</mat-card-title>
-  <button mat-button color="warn" (click)="deleteProduct(product)">Delete</button>
+  <button mat-button color="primary" (click)="buyProduct(product)">Buy</button>
+  <button *ngIf="isAuthor(product.createdById)" mat-button color="warn" (click)="deleteProduct(product)">Delete</button>
 </mat-card>
 </div>

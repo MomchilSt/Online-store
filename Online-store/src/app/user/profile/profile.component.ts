@@ -15,6 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user: IUser;
+  productsBought: any;
 
   constructor(
     private authService: AuthService,
@@ -27,6 +28,9 @@ export class ProfileComponent implements OnInit {
     this.userService.getCurrentUser()
     .subscribe(data => {
       this.user = data;
+      if (data.productsBought) {
+        this.productsBought = data.productsBought;
+      }
     });
   }
 }

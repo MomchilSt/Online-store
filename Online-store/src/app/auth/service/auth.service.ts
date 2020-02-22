@@ -13,6 +13,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  // tslint:disable-next-line: variable-name
+  private _isAuth = false;
   private userInfo: IUser;
   public currentUser: string;
 
@@ -27,21 +29,18 @@ export class AuthService {
     this.currentUser = currentUser ? currentUser : null;
 
     this.afAuth.authState.subscribe(afUserInfo => {
-      if (afUserInfo) {
-        localStorage.setItem('user', 'logged');
-        localStorage.setItem('userId', afUserInfo.uid);
-        this.getUserData(afUserInfo).subscribe((user: IUser) => {
-          this.userInfo = user ? user : null;
-        });
-      } else {
-        this.userInfo = null;
-      }
-    });
+       if (afUserInfo) {
+         this.getUserData(afUserInfo).subscribe((user: IUser) => {
+           this.userInfo = user ? user : null;
+         });
+       } else {
+         this.userInfo = null;
+       }
+     });
   }
 
   get isLoggedIn(): boolean {
-    const user = localStorage.getItem('user');
-    return user !== null;
+    return this._isAuth || !!localStorage.getItem('user');
   }
 
   get userData(): IUser {
@@ -63,7 +62,10 @@ export class AuthService {
     .auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.router.navigate(['home']);
+        this._isAuth = true;
+        localStorage.setItem('user', 'logged');
+        localStorage.setItem('email', email);
+        this.router.navigate(['all-products']);
       })
       .catch(error => {
         this.snackbar.open(error.message, 'Woops!', {
@@ -84,8 +86,9 @@ export class AuthService {
     .auth
       .createUserWithEmailAndPassword(email, passwordsGroup.password)
       .then(afUserInfo => {
-        this.router.navigate([ 'auth/login' ]);
         this.setUserData(afUserInfo, name, imageUrl);
+        this.signOut();
+        this.router.navigate([ 'auth/login' ]);
       })
       .catch(error => {
         this.snackbar.open(error.message, 'Woops!', {
@@ -114,30 +117,14 @@ export class AuthService {
       });
   }
 
-
-
    setUserData(afUserInfo, name?: string, imageUrl?: string) {
     this.db.object('/users/' + afUserInfo.user.uid).update({
       id: afUserInfo.user.uid,
       email: afUserInfo.user.email,
       name: name || afUserInfo.displayName,
-      imageUrl: imageUrl || 'https://www.jetphotos.com/assets/img/user.png'
+      imageUrl: imageUrl || 'https://www.jetphotos.com/assets/img/user.png',
+      productsBought: []
     });
-
-    //  const userData: IUser = {
-    //    id: afUserInfo.user.uid,
-    //    email: afUserInfo.user.email,
-    //    name: name || afUserInfo.user.displayName,
-    //    imageUrl: imageUrl || afUserInfo.user.imageUrl
-    //  };
-
-    //  if (!userData.imageUrl) {
-    //    userData.imageUrl = 'https://www.jetphotos.com/assets/img/user.png';
-    //    }
-
-    //  return this.afDb.doc(`users/${afUserInfo.user.uid}`).set(userData, {
-    //    merge: true
-    //  });
    }
 
   signOut() {
@@ -147,6 +134,7 @@ export class AuthService {
       .then(() => {
         this.userInfo = null;
         localStorage.removeItem('user');
+        localStorage.removeItem('email');
         localStorage.removeItem('userId');
         this.router.navigate(['/']);
       })

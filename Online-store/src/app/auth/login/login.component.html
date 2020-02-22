@@ -1,13 +1,14 @@
 <div class="home" fxLayoutAlign="center">
   <div
     fxLayout="column"
-    fxLayoutGap="20px"
+    fxLayoutGap="25px"
     fxLayoutAlign="center"
     fxFlex="35"
   >
     <h2 fxLayoutAlign="center">Login In !</h2>
     <form
       #loginForm="ngForm"
+      fxLayoutGap="20px"
       (ngSubmit)="login(loginForm.value)"
       fxLayout="column"
     >
