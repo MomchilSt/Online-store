@@ -10,15 +10,7 @@
       </div>
     
       <img mat-card-image src="{{product.imageUrl}}" alt="Photo of a Shiba Inu" />
-      <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="space-between">
-        <button mat-button >
-          <span #favourited class="favourited">
-          {{product.favourited}}
-       </span>
-      </button>
-          <button  mat-button (click)="favourite(product)">
-            <mat-icon>favorite</mat-icon>
-          </button>
+      <mat-card-actions class="action-btn" fxLayout fxLayoutAlign="center">
           <button mat-button color="primary" (click)="details(product.key)">details</button>
       </mat-card-actions>
       

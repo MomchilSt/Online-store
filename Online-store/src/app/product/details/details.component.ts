@@ -3,7 +3,7 @@ import { IUser } from './../../shared/interfaces/user';
 import { UserService } from './../../user/service/user.service';
 import { IProduct } from './../../shared/interfaces/product';
 import { ProductService } from './../service/product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -13,7 +13,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  product: Observable<IProduct>;
+  @Input() product: IProduct;
+  @ViewChild('favourited', { static: false }) favourited: ElementRef;
+  product$: Observable<IProduct>;
   productFromDb: IProduct;
   userFromDb: IUser;
   createdId: string;
@@ -27,12 +29,24 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit() {
     const productId = this.route.snapshot.params['id'];
-    this.product = this.productService.getById(productId);
+    this.product$ = this.productService.getById(productId);
   }
 
   isAuthor(product) {
     const storageEmail = this.productService.getAuthorEmail();
     return storageEmail === product;
+  }
+
+  favourite(product) {
+    const id = product.id;
+    const value = this.favourited.nativeElement.textContent;
+    this.productService
+      .update(id, 'favourited', value)
+       .then(() => {
+         // tslint:disable-next-line: no-unused-expression
+         this.router.onSameUrlNavigation;
+       })
+       .catch(err => console.error(err));
   }
 
   buyProduct(product) {

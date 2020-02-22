@@ -1,4 +1,4 @@
-<div *ngIf="product | async as product" >
+<div *ngIf="product$ | async as product" >
   <div fxLayout="row wrap" fxLayoutGap="20px" class="line"><mat-divider></mat-divider></div>
 <div class="holder" 
   fxLayout="row wrap" 
@@ -25,9 +25,16 @@ class="card">
     <mat-card-title>{{product.description}}</mat-card-title>
   </mat-card-header>
   <mat-card-content fxLayoutAlign="center" fxLayout="column" >
-    <div fxLayoutAlign="center" ><b>Located at {{product.store}} store.</b></div>
-    <div fxLayoutAlign="center" ><b>Favourited: {{product.favourited}} times!</b></div>
-  </mat-card-content>
+
+    <div fxLayoutAlign="center">Located at {{product.store}} store.</div>
+    
+    <button  mat-button (click)="favourite(product)">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <div fxLayoutAlign="center">Favourites</div>
+    <div fxLayoutAlign="center"  #favourited class="favourited" > {{product.favourited}}</div>
+   
+  </mat-card-content> 
   <mat-card-title fxLayoutAlign="center">Price: $ {{product.price}}</mat-card-title>
   <button mat-button color="primary" (click)="buyProduct(product)">Buy</button>
   <button *ngIf="isAuthor(product.createdById)" mat-button color="warn" (click)="deleteProduct(product)">Delete</button>

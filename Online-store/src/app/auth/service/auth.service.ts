@@ -135,8 +135,8 @@ export class AuthService {
         this.userInfo = null;
         localStorage.removeItem('user');
         localStorage.removeItem('email');
-        localStorage.removeItem('userId');
-        this.router.navigate(['/']);
+        localStorage.clear();
+        this.router.navigate(['home']);
       })
       .catch(err => console.error(err));
   }

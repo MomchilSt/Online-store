@@ -15,15 +15,21 @@ fxLayoutGap="45px"
 
     <mat-form-field>
       <input
-        matInput
-        ngModel
+      #nameInput="ngModel"
+      matInput
+      ngModel
         id="name"
         type="name"
         name="name"
+        minlength="5"
         required
         placeholder="Store name"
-      />
+      />  
+      <mat-error *ngIf="nameInput.hasError('required')"
+      >Name is required.</mat-error
+    >
     </mat-form-field>
+    
     <mat-form-field>
       <input
       #priceInput="ngModel"

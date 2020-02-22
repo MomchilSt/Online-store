@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./all-products.component.css']
 })
 export class AllProductsComponent implements OnInit {
-  @Input() product: IProduct;
-  @ViewChild('favourited', { static: false }) favourited: ElementRef;
   products: Observable<IProduct[]>;
   constructor(
     private productService: ProductService,
@@ -19,18 +17,6 @@ export class AllProductsComponent implements OnInit {
 
   ngOnInit() {
     this.products = this.productService.getAll();
-  }
-
-  favourite(prodcut) {
-    const id = prodcut.key;
-    const value = this.favourited.nativeElement.textContent;
-    this.productService
-      .update(id, 'favourited', value)
-       .then(() => {
-         // tslint:disable-next-line: no-unused-expression
-         this.router.onSameUrlNavigation;
-       })
-       .catch(err => console.error(err));
   }
 
   details(id) {
