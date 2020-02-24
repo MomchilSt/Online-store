@@ -16,7 +16,7 @@ export class DetailsComponent implements OnInit {
   @Input() product: IProduct;
   @ViewChild('favourited', { static: false }) favourited: ElementRef;
   product$: Observable<IProduct>;
-  productFromDb: IProduct;
+  productFromDb: any;
   userFromDb: IUser;
   createdId: string;
 
@@ -51,8 +51,9 @@ export class DetailsComponent implements OnInit {
 
   buyProduct(product) {
     const id = product.id;
+    this.userService.getCurrentUser().subscribe(data => this.userFromDb = data);
     this.productService.getById(id).subscribe(data => this.productFromDb = data as IProduct);
-    this.userService.updateBoughtProducts(this.authService.currentUser, this.productFromDb.price, this.productFromDb.name);
+    this.userService.updateBoughtProducts(this.userFromDb.id, product.price, product.name);
   }
 
   deleteProduct(product) {

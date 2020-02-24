@@ -18,10 +18,7 @@ export class ProfileComponent implements OnInit {
   productsBought: any;
 
   constructor(
-    private authService: AuthService,
-    private angularFireAuth: AngularFireAuth,
     private userService: UserService,
-    private activateRoute: ActivatedRoute,
   ) { }
 
   ngOnInit() {
@@ -31,6 +28,7 @@ export class ProfileComponent implements OnInit {
       if (data.productsBought) {
         this.productsBought = data.productsBought;
       }
+      console.log(this.user);
     });
   }
 }

@@ -1,8 +1,5 @@
 import { IStore } from './../../shared/interfaces/store';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { IProduct } from 'src/app/shared/interfaces/product';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,8 +12,6 @@ export class StoreService {
 
   constructor(
     private db: AngularFireDatabase,
-    private afDb: AngularFirestore,
-    private router: Router,
     private snackBar: MatSnackBar) { }
   create(value) {
     const { name, address, imageUrl } = value;

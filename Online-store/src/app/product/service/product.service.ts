@@ -14,7 +14,6 @@ export class ProductService {
     private _isAuthor = false;
   constructor(
     private db: AngularFireDatabase,
-    private router: Router,
     private snackBar: MatSnackBar) { }
   create(value) {
     const { name, description, imageUrl, price, store } = value;

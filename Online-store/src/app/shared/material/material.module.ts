@@ -14,11 +14,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule  } from '@angular/material/progress-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-
+import { MatMenuModule } from '@angular/material/menu';
 @NgModule({
   declarations: [],
   imports: [
     LayoutModule,
+    MatMenuModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -37,7 +38,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatGridListModule,
     MatProgressBarModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
     LayoutModule,
